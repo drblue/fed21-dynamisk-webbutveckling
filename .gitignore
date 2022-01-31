@@ -1,0 +1,4 @@
+/00-sourcefiles/
+/**/node_modules/
+*-nogit
+/**/*.env
