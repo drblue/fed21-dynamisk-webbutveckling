@@ -34,7 +34,7 @@ console.log("After readdir...");
  */
 const fs = require('fs').promises;
 
-fs.readdir('qwerty')
+fs.readdir('.')
 	.then(files => {
 		console.log("The contents in the current directory is:");
 		console.log(files);
