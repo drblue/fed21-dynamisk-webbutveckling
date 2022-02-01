@@ -17,3 +17,10 @@ console.log(`The approx. area of a circle with radius ${radius} is:`, approxArea
 
 let circumference = geo.circumference(radius);
 console.log(`The circumference of a circle with radius ${radius} is:`, circumference);
+
+radius = 1337;
+// let circ = geo.circumference(radius);
+// let approxCirc = num.round(circ, 3);
+
+let approxCirc = geo.approxCircumference(radius, 3);
+console.log(`The approx. circumference of a circle with radius ${radius} is:`, approxCirc);
