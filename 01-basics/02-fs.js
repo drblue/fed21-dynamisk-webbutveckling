@@ -42,3 +42,15 @@ fs.readdir('.')
 	.catch(e => {
 		console.error(e);
 	});
+
+/**
+ * readFile using promise 😘
+ */
+fs.readFile('./data/loremipsum.txt', 'utf-8')
+.then(data => {
+	console.log("Here's the contents of your file:");
+	console.log(data);
+})
+.catch(e => {
+	console.error(e);
+});
