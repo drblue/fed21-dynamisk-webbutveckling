@@ -15,20 +15,23 @@ app.get('/', (req, res) => {
 	res.send('Hello from the root.');
 });
 
-// Respond to GET-request for `/nom`
-app.get('/nom', (req, res) => {
-	res.sendFile( path.join(__dirname, 'pages/nom.html') );
-});
+// // Respond to GET-request for `/nom`
+// app.get('/nom', (req, res) => {
+// 	res.sendFile( path.join(__dirname, 'pages/nom.html') );
+// });
 
-// Respond to GET-request for `/about`
-app.get('/about', (req, res) => {
-	res.sendFile(__dirname + '/pages/about.html');
-});
+// // Respond to GET-request for `/about`
+// app.get('/about', (req, res) => {
+// 	res.sendFile(__dirname + '/pages/about.html');
+// });
 
-// Respond to GET-request for `/api/nom`
-app.get('/api/nom', (req, res) => {
-	res.send({ msg: 'Cakes are nom-nom-nom.' });
-});
+// // Respond to GET-request for `/api/nom`
+// app.get('/api/nom', (req, res) => {
+// 	res.send({ msg: 'Cakes are nom-nom-nom.' });
+// });
+
+// Serve files from `/public` if no other route matches
+app.use( express.static('public') );
 
 // Start listening for incoming requests on port 3000
 app.listen(3000, () => {
