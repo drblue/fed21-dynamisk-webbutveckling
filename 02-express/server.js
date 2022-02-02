@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
 	// res = metoder för att skicka ett svar på förfrågan
 	console.log("Someone requested my root!");
 
-	res.send('Hello I AM HUNGRY 😋🍽!');
+	res.send('😋🍽!');
 });
 
 // Start listening for incoming requests on port 3000
