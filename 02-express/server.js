@@ -15,20 +15,10 @@ app.get('/', (req, res) => {
 	res.send('Hello from the root.');
 });
 
-// // Respond to GET-request for `/nom`
-// app.get('/nom', (req, res) => {
-// 	res.sendFile( path.join(__dirname, 'pages/nom.html') );
-// });
-
-// // Respond to GET-request for `/about`
-// app.get('/about', (req, res) => {
-// 	res.sendFile(__dirname + '/pages/about.html');
-// });
-
-// // Respond to GET-request for `/api/nom`
-// app.get('/api/nom', (req, res) => {
-// 	res.send({ msg: 'Cakes are nom-nom-nom.' });
-// });
+// Respond with current time
+app.get('/now', (req, res) => {
+	res.send(`The current time is ${new Date()}`);
+})
 
 // Serve files from `/public` if no other route matches
 app.use( express.static('public') );
