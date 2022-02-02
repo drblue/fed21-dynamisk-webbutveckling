@@ -3,6 +3,7 @@
  */
 
 const express = require('express');
+const path = require('path');
 const app = express();
 
 // Respond to GET request for `/`
@@ -16,7 +17,7 @@ app.get('/', (req, res) => {
 
 // Respond to GET-request for `/nom`
 app.get('/nom', (req, res) => {
-	res.send('Biscuit donut jelly jelly-o dragée oat cake croissant danish. Tart jelly beans liquorice tart chocolate chupa chups. Dragée topping oat cake chocolate dessert.');
+	res.sendFile( path.join(__dirname, 'pages/nom.html') );
 });
 
 // Respond to GET-request for `/about`
