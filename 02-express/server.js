@@ -5,13 +5,32 @@
 const express = require('express');
 const app = express();
 
-// When a GET request for `/` (http://localhost:3000/) is received, run this function
+// Respond to GET request for `/`
 app.get('/', (req, res) => {
 	// req = information om den inkommande förfrågan
 	// res = metoder för att skicka ett svar på förfrågan
-	console.log("Someone requested my root!");
+	console.log(req.method, req.url);
 
-	res.send('😋🍽!');
+	res.send('Hello from the root.');
+});
+
+// Respond to GET-request for `/nom`
+app.get('/nom', (req, res) => {
+	res.send('Biscuit donut jelly jelly-o dragée oat cake croissant danish. Tart jelly beans liquorice tart chocolate chupa chups. Dragée topping oat cake chocolate dessert.');
+});
+
+// Respond to GET-request for `/about`
+app.get('/about', (req, res) => {
+	res.set('Content-Type', 'text/html');
+
+	res.write('<h1>About</h1>');
+	res.write('<p>This is the about page.</p>');
+	res.end();
+});
+
+// Respond to GET-request for `/api/nom`
+app.get('/api/nom', (req, res) => {
+	res.send({ msg: 'Cakes are nom-nom-nom.' });
 });
 
 // Start listening for incoming requests on port 3000
