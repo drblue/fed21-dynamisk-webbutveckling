@@ -21,11 +21,7 @@ app.get('/nom', (req, res) => {
 
 // Respond to GET-request for `/about`
 app.get('/about', (req, res) => {
-	res.set('Content-Type', 'text/html');
-
-	res.write('<h1>About</h1>');
-	res.write('<p>This is the about page.</p>');
-	res.end();
+	res.sendFile(__dirname + '/pages/about.html');
 });
 
 // Respond to GET-request for `/api/nom`
