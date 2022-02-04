@@ -8,12 +8,14 @@ const path = require('path');
 const app = express();
 const oneliners = require('./data/oneliners.json');
 
+// Inject logic to all incoming requests
+app.use((req, res, next) => {
+	console.log(`Incoming ${req.method} request for ${req.url}`);
+	next();
+});
+
 // Respond to GET request for `/`
 app.get('/', (req, res) => {
-	// req = information om den inkommande förfrågan
-	// res = metoder för att skicka ett svar på förfrågan
-	console.log(req.method, req.url);
-
 	res.send('Hello from the root.');
 });
 
