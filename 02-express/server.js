@@ -5,9 +5,12 @@
 const express = require('express');
 const _ = require('lodash');
 const morgan = require('morgan');
+const oneliners = require('./data/oneliners.json');
 
 const app = express();
-const oneliners = require('./data/oneliners.json');
+
+// tell express to use ejs as it's view engine
+app.set('view engine', 'ejs');
 
 // // Inject logic to all incoming requests
 // app.use((req, res, next) => {
@@ -20,7 +23,7 @@ app.use(morgan('dev'));
 
 // Respond to GET request for `/`
 app.get('/', (req, res) => {
-	res.send('Hello from the root.');
+	res.render('index');
 });
 
 // Respond with current time
@@ -36,7 +39,7 @@ app.get('/jokes', (req, res) => {
 	const oneliner = _.sample(oneliners);
 
 	// 3. Respond with the item (`res.send(item)`)
-	res.send(oneliner);
+	res.render('jokes', { oneliner });
 });
 
 // Serve files from `/public` if no other route matches
