@@ -3,6 +3,7 @@
  */
 
 const express = require('express');
+const _ = require('lodash');
 const path = require('path');
 const app = express();
 const oneliners = require('./data/oneliners.json');
@@ -26,8 +27,7 @@ app.get('/jokes', (req, res) => {
 	// 1. Somehow read the JSON-contents of data/oneliners.json
 
 	// 2. Get a random item from the array
-	const i = Math.floor(Math.random() * oneliners.length);
-	const oneliner = oneliners[i];
+	const oneliner = _.sample(oneliners);
 
 	// 3. Respond with the item (`res.send(item)`)
 	res.send(oneliner);
