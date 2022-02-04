@@ -4,15 +4,19 @@
 
 const express = require('express');
 const _ = require('lodash');
-const path = require('path');
+const morgan = require('morgan');
+
 const app = express();
 const oneliners = require('./data/oneliners.json');
 
-// Inject logic to all incoming requests
-app.use((req, res, next) => {
-	console.log(`Incoming ${req.method} request for ${req.url}`);
-	next();
-});
+// // Inject logic to all incoming requests
+// app.use((req, res, next) => {
+// 	console.log(`Incoming ${req.method} request for ${req.url}`);
+// 	next();
+// });
+
+// use morgan http request logger
+app.use(morgan('dev'));
 
 // Respond to GET request for `/`
 app.get('/', (req, res) => {
