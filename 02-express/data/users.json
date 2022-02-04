@@ -1,0 +1,282 @@
+[
+	{
+		"gender": "female",
+		"name": {
+			"title": "Ms",
+			"first": "Izzie",
+			"last": "Roberts"
+		},
+		"location": {
+			"street": {
+				"number": 9280,
+				"name": "Church Street"
+			},
+			"city": "Lusk",
+			"state": "Kildare",
+			"country": "Ireland",
+			"postcode": 61716,
+			"coordinates": {
+				"latitude": "25.7308",
+				"longitude": "55.4629"
+			},
+			"timezone": {
+				"offset": "-4:00",
+				"description": "Atlantic Time (Canada), Caracas, La Paz"
+			}
+		},
+		"email": "izzie.roberts@example.com",
+		"login": {
+			"uuid": "7cb4e196-9d99-4a49-8a8b-2ca8ce16b595",
+			"username": "reddog800",
+			"password": "kenshin",
+			"salt": "2MJNqMGN",
+			"md5": "370e7c7a8e26bc568e83a5b420ca0be0",
+			"sha1": "21d169de5999f1d7e4c51b0ca11d771dd876ae16",
+			"sha256": "de238a4d8c5e070a935f3491fc66f27c271b5b5cd6de539b845858e448d61de1"
+		},
+		"dob": {
+			"date": "1979-02-22T10:43:42.289Z",
+			"age": 43
+		},
+		"registered": {
+			"date": "2011-01-24T06:47:30.153Z",
+			"age": 11
+		},
+		"phone": "071-037-3539",
+		"cell": "081-872-9610",
+		"id": {
+			"name": "PPS",
+			"value": "1284705T"
+		},
+		"picture": {
+			"large": "https://randomuser.me/api/portraits/women/75.jpg",
+			"medium": "https://randomuser.me/api/portraits/med/women/75.jpg",
+			"thumbnail": "https://randomuser.me/api/portraits/thumb/women/75.jpg"
+		},
+		"nat": "IE"
+	},
+	{
+		"gender": "female",
+		"name": {
+			"title": "Ms",
+			"first": "Loane",
+			"last": "Jean"
+		},
+		"location": {
+			"street": {
+				"number": 4408,
+				"name": "Rue Bossuet"
+			},
+			"city": "Nice",
+			"state": "Nord",
+			"country": "France",
+			"postcode": 99646,
+			"coordinates": {
+				"latitude": "80.8800",
+				"longitude": "137.5543"
+			},
+			"timezone": {
+				"offset": "-3:30",
+				"description": "Newfoundland"
+			}
+		},
+		"email": "loane.jean@example.com",
+		"login": {
+			"uuid": "c3fa1023-d7b0-4978-97b5-769bf5142e10",
+			"username": "greenladybug787",
+			"password": "1022",
+			"salt": "xgtl6fas",
+			"md5": "4933a6f38756f9f8279bee6723649c5b",
+			"sha1": "43cd9afddc7c11e7f1aedd74b19ce50b44377057",
+			"sha256": "158fbc7729a9c2672006fafe2898a3ef77c4807a43edfb454bf6f4b4326216f3"
+		},
+		"dob": {
+			"date": "1990-09-15T22:51:54.813Z",
+			"age": 32
+		},
+		"registered": {
+			"date": "2003-02-01T07:04:28.564Z",
+			"age": 19
+		},
+		"phone": "02-41-44-94-97",
+		"cell": "06-71-72-32-30",
+		"id": {
+			"name": "INSEE",
+			"value": "2NNaN28106361 51"
+		},
+		"picture": {
+			"large": "https://randomuser.me/api/portraits/women/30.jpg",
+			"medium": "https://randomuser.me/api/portraits/med/women/30.jpg",
+			"thumbnail": "https://randomuser.me/api/portraits/thumb/women/30.jpg"
+		},
+		"nat": "FR"
+	},
+	{
+		"gender": "female",
+		"name": {
+			"title": "Mrs",
+			"first": "Sofia",
+			"last": "Andersen"
+		},
+		"location": {
+			"street": {
+				"number": 5178,
+				"name": "Toftevej"
+			},
+			"city": "Gjerlev",
+			"state": "Midtjylland",
+			"country": "Denmark",
+			"postcode": 47289,
+			"coordinates": {
+				"latitude": "-35.1868",
+				"longitude": "-177.6811"
+			},
+			"timezone": {
+				"offset": "+9:30",
+				"description": "Adelaide, Darwin"
+			}
+		},
+		"email": "sofia.andersen@example.com",
+		"login": {
+			"uuid": "57cd0557-176f-46fc-b3c3-63414d20a5a1",
+			"username": "redsnake510",
+			"password": "callisto",
+			"salt": "Bxg0CqSK",
+			"md5": "4e5ccb65a4d0a7c9ed0e9958e436653b",
+			"sha1": "6292f08230ab5a3fafeb0e60f36e242828ef3a4a",
+			"sha256": "c624f2fe93dbb06fcece4d19b56c780c42fb1d4e2533a8d34506a5d0aeba1db0"
+		},
+		"dob": {
+			"date": "1966-02-20T21:45:00.799Z",
+			"age": 56
+		},
+		"registered": {
+			"date": "2012-08-08T22:30:26.673Z",
+			"age": 10
+		},
+		"phone": "81421920",
+		"cell": "33961667",
+		"id": {
+			"name": "CPR",
+			"value": "200266-6395"
+		},
+		"picture": {
+			"large": "https://randomuser.me/api/portraits/women/53.jpg",
+			"medium": "https://randomuser.me/api/portraits/med/women/53.jpg",
+			"thumbnail": "https://randomuser.me/api/portraits/thumb/women/53.jpg"
+		},
+		"nat": "DK"
+	},
+	{
+		"gender": "female",
+		"name": {
+			"title": "Mrs",
+			"first": "Alice",
+			"last": "Chambers"
+		},
+		"location": {
+			"street": {
+				"number": 5434,
+				"name": "Green Lane"
+			},
+			"city": "Salford",
+			"state": "Cambridgeshire",
+			"country": "United Kingdom",
+			"postcode": "P5V 0BS",
+			"coordinates": {
+				"latitude": "10.8723",
+				"longitude": "-134.9155"
+			},
+			"timezone": {
+				"offset": "-3:30",
+				"description": "Newfoundland"
+			}
+		},
+		"email": "alice.chambers@example.com",
+		"login": {
+			"uuid": "5ae0ae8e-3567-451f-b4b9-3ad7698e2732",
+			"username": "bluefrog438",
+			"password": "hershey",
+			"salt": "nH4QkSyF",
+			"md5": "bcf3a60f55acdf3a1179188fcd5c0397",
+			"sha1": "15469fdcb75367804aa1ad2fa80da0d0a8b1186d",
+			"sha256": "cf9bdd02ce12949b79ba9513ff4dba18d02ab2fdf802ceee9528848baedd8b37"
+		},
+		"dob": {
+			"date": "1967-11-30T17:46:36.363Z",
+			"age": 55
+		},
+		"registered": {
+			"date": "2016-04-28T11:12:47.570Z",
+			"age": 6
+		},
+		"phone": "016973 23252",
+		"cell": "0715-600-351",
+		"id": {
+			"name": "NINO",
+			"value": "ZP 72 46 56 B"
+		},
+		"picture": {
+			"large": "https://randomuser.me/api/portraits/women/51.jpg",
+			"medium": "https://randomuser.me/api/portraits/med/women/51.jpg",
+			"thumbnail": "https://randomuser.me/api/portraits/thumb/women/51.jpg"
+		},
+		"nat": "GB"
+	},
+	{
+		"gender": "male",
+		"name": {
+			"title": "Mr",
+			"first": "Carter",
+			"last": "Kumar"
+		},
+		"location": {
+			"street": {
+				"number": 3939,
+				"name": "Rattray Street"
+			},
+			"city": "Upper Hutt",
+			"state": "Auckland",
+			"country": "New Zealand",
+			"postcode": 20464,
+			"coordinates": {
+				"latitude": "83.1109",
+				"longitude": "-103.3629"
+			},
+			"timezone": {
+				"offset": "-6:00",
+				"description": "Central Time (US & Canada), Mexico City"
+			}
+		},
+		"email": "carter.kumar@example.com",
+		"login": {
+			"uuid": "064fb2a9-ba4f-498e-8264-83b1338eb2b6",
+			"username": "purpleostrich850",
+			"password": "carina",
+			"salt": "lgB9aaUJ",
+			"md5": "b298ada83b663a52f45e81b0c7942696",
+			"sha1": "1086d8ab4e635143d7fb315207b7c6e513744307",
+			"sha256": "d0c7d404e810674f114b8323aa5fa0307f70f5ec25cafd55097ff4759724a18d"
+		},
+		"dob": {
+			"date": "1995-11-10T05:35:58.313Z",
+			"age": 27
+		},
+		"registered": {
+			"date": "2014-09-21T21:39:12.486Z",
+			"age": 8
+		},
+		"phone": "(380)-134-4636",
+		"cell": "(989)-774-2495",
+		"id": {
+			"name": "",
+			"value": null
+		},
+		"picture": {
+			"large": "https://randomuser.me/api/portraits/men/5.jpg",
+			"medium": "https://randomuser.me/api/portraits/med/men/5.jpg",
+			"thumbnail": "https://randomuser.me/api/portraits/thumb/men/5.jpg"
+		},
+		"nat": "NZ"
+	}
+]
