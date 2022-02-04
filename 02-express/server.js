@@ -5,6 +5,7 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const oneliners = require('./data/oneliners.json');
 
 // Respond to GET request for `/`
 app.get('/', (req, res) => {
@@ -23,8 +24,13 @@ app.get('/now', (req, res) => {
 // Respond with a random oneliner joke
 app.get('/jokes', (req, res) => {
 	// 1. Somehow read the JSON-contents of data/oneliners.json
+
 	// 2. Get a random item from the array
+	const i = Math.floor(Math.random() * oneliners.length);
+	const oneliner = oneliners[i];
+
 	// 3. Respond with the item (`res.send(item)`)
+	res.send(oneliner);
 });
 
 // Serve files from `/public` if no other route matches
