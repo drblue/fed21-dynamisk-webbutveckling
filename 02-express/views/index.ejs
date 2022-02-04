@@ -1,3 +1,13 @@
 <%- include('partials/header') %>
 	<h1>Look at my index!</h1>
+
+	<ul>
+		<% users.forEach((user, index) => { %>
+			<li>
+				<a href="/users/<%= index %>">
+					<%= user.name.first %> <%= user.name.last %>
+				</a>
+			</li>
+		<% }) %>
+	</ul>
 <%- include('partials/footer') %>
