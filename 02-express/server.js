@@ -23,7 +23,7 @@ app.use(morgan('dev'));
 
 // Respond to GET request for `/`
 app.get('/', (req, res) => {
-	res.render('index');
+	res.render('index', { title: "My Express Server" });
 });
 
 // Respond with current time
@@ -39,7 +39,10 @@ app.get('/jokes', (req, res) => {
 	const oneliner = _.sample(oneliners);
 
 	// 3. Respond with the item (`res.send(item)`)
-	res.render('jokes', { oneliner });
+	res.render('jokes', {
+		oneliner,
+		title: "A random oneliner for you"
+	});
 });
 
 // Serve files from `/public` if no other route matches
