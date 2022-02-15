@@ -1,17 +1,14 @@
 const express = require('express');
 const router = express.Router();
+const pokemoncards_controller = require('../controllers/pokemoncards_controller');
 
 // Implementera GET / READ -  Alla pokemonkort
 // curl -X GET http://localhost:3000/pokemoncards/
-router.get('/', (req, res) => {  //  -> /pokemoncards/
-    res.send('GET not implemented');
-});
+router.get('/', pokemoncards_controller.read);
 
 // Implementera GET / READ -  Ett pokemonkort
 // curl -X GET http://localhost:3000/pokemoncards/1234
-router.get('/:id', (req, res) => {  // -> /pokemoncards/1234  (req.params.id = 1234)
-    res.send('GET (' + req.params.id + ') not yet implemented!');
-});
+router.get('/:id', pokemoncards_controller.read);
 
 // Implementera POST / CREATE - Skapa ett pokemonkort
 // curl -X POST http://localhost:3000/pokemoncards/1234
