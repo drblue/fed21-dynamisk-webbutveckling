@@ -8,7 +8,8 @@ const PokemonCards = require('../models/PokemonCards');
 const create = async(req, res) => {
     try {
 
-        let card = new PokemonCards(req.body).save();
+        
+        let card = await new PokemonCards(req.body).save();
 
         return res.status(201).send(
             {
@@ -72,7 +73,8 @@ const update = async(req, res) => {
 
         let card = await PokemonCards.where( { "id" : req.params.id } ).fetch({ require : true });
 
-        card = await card.set(req.body).save();
+        card = await card.set(req.body);
+        //.save();
 
         return res.status(200).send(
             {
@@ -93,9 +95,33 @@ const update = async(req, res) => {
     }
 }
 
+const destroy = async(req, res) => {
+    try {
+        let card = await PokemonCards.where( { "id" : req.params.id  } ).fetch( { require: true } );
+        card = await card.destroy();
+
+        return res.status(200).send(
+            {
+                success: true, 
+                data: {
+                    card
+                }
+            }
+        );
+
+    } catch (err) {
+        return res.status(500).send(
+            {
+                success: false,
+                data: err.message
+            }
+        );  
+    }
+} 
 
 module.exports = {
     create,
     read,
-    update
+    update,
+    destroy
 }

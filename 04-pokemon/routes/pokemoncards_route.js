@@ -20,8 +20,6 @@ router.put('/:id', pokemoncards_controller.update);
 
 // Implementera DELETE / DELETE (DESTROY) - Radera ett pokemonkort
 // curl -X DELETE http://localhost:3000/pokemoncards/1234
-router.delete('/:id', (req, res) => {
-    res.send('DELETE (' + req.params.id + ') not yet implemented');
-});
+router.delete('/:id', pokemoncards_controller.destroy);
 
 module.exports = router;

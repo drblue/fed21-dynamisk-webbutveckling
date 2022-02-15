@@ -1,7 +1,13 @@
 const bookshelf = require('./bookshelf');
 
-const PokemonFriends = bookshelf.Model.extend({
+const PokemonBattles = bookshelf.Model.extend({
     tableName: "PokemonBattles"
 });
 
-module.exports = PokemonFriends;
+/*
+const PokemonBattles = bookshelf.model('PokemonBattles', {
+    tableName: "PokemonBattles"
+});
+*/
+
+module.exports = PokemonBattles;
