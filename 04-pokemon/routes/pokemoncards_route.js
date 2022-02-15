@@ -11,16 +11,12 @@ router.get('/', pokemoncards_controller.read);
 router.get('/:id', pokemoncards_controller.read);
 
 // Implementera POST / CREATE - Skapa ett pokemonkort
-// curl -X POST http://localhost:3000/pokemoncards/1234
-router.post('/', (req, res) => {
-    res.send('POST not yet implemented');
-});
+// curl -X POST http://localhost:3000/pokemoncards/ -H 'Content-Type: application/json' -d '{ "name" : "Bobba Fett", "hp" : 145 }'
+router.post('/', pokemoncards_controller.create);
 
 // Implementera PUT / UPDATE - Uppdatera ett pokemonkort
-// curl -X PUT http://localhost:3000/pokemoncards/1234
-router.put('/:id', (req, res) => {
-    res.send('PUT (' + req.params.id + ') not yet implemented');
-});
+// // curl -X PUT http://localhost:3000/pokemoncards/15 -H 'Content-Type: application/json' -d '{ "name" : "Bobba Fett", "hp" : 145 }'
+router.put('/:id', pokemoncards_controller.update);
 
 // Implementera DELETE / DELETE (DESTROY) - Radera ett pokemonkort
 // curl -X DELETE http://localhost:3000/pokemoncards/1234

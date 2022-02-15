@@ -2,6 +2,36 @@
 const PokemonCards = require('../models/PokemonCards');
 //const modules = require('../models');
 
+/*
+ * Create - skapa ett kort i databasen
+ */
+const create = async(req, res) => {
+    try {
+
+        let card = new PokemonCards(req.body).save();
+
+        return res.status(201).send(
+            {
+                success: true, 
+                data: {
+                    card
+                }
+            }
+        )
+
+    } catch (err) {
+        return res.status(500).send(
+            {
+                success: false, 
+                data: err.message
+            }
+        );
+    }
+}
+
+/*
+ *  Read - läs ett eller flera kort från databasen
+ */
 const read = async(req, res) => {
     try {
 
@@ -34,6 +64,38 @@ const read = async(req, res) => {
     }
 }
 
+/*
+ *  UPDATE - Uppdaterat ett kort i databasen
+ */
+const update = async(req, res) => {
+    try {
+
+        let card = await PokemonCards.where( { "id" : req.params.id } ).fetch({ require : true });
+
+        card = await card.set(req.body).save();
+
+        return res.status(200).send(
+            {
+                success: true,
+                data: {
+                    card
+                }
+            }
+        );
+
+    } catch (err) {
+        return res.status(500).send(
+            {
+                success: false,
+                data: err.message
+            }
+        );        
+    }
+}
+
+
 module.exports = {
-    read
+    create,
+    read,
+    update
 }
