@@ -21,3 +21,12 @@ CREATE TABLE PokemonBattles (
 	FOREIGN KEY(winningPokemon) REFERENCES PokemonCards(id),
 	FOREIGN KEY(loosingPokemon) REFERENCES PokemonCards(id)
 );
+
+CREATE TABLE PokemonFriendCards (
+    id INTEGER NOT NULL AUTO_INCREMENT,
+    friend INTEGER NOT NULL,
+    card INTEGER NOT NULL,
+    PRIMARY KEY(id),
+    FOREIGN KEY(friend) REFERENCES PokemonFriends(id),
+    FOREIGN KEY(card) REFERENCES PokemonCards(id)
+);
