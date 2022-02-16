@@ -8,7 +8,6 @@ const PokemonCards = require('../models/PokemonCards');
 const create = async(req, res) => {
     try {
 
-        
         let card = await new PokemonCards(req.body).save();
 
         return res.status(201).send(
@@ -38,9 +37,9 @@ const read = async(req, res) => {
 
         let card;
         if (req.params.id) {
-            card = await PokemonCards.where({ "id" : req.params.id }).fetch( { require: false });
+            card = await PokemonCards.where({ "id" : req.params.id }).fetch( { require: false, withRelated: ['wonBattles', 'lostBattles'] });
         } else {
-            card = await PokemonCards.fetchAll();
+            card = await PokemonCards.fetchAll( { withRelated: ['wonBattles', 'lostBattles'] });
         }
 
         if(!card) {
