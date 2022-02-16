@@ -22,4 +22,8 @@ router.put('/:id', pokemonfriends_controller.update);
 // curl -X DELETE http://localhost:3000/pokemonfriends/1234
 router.delete('/:id', pokemonfriends_controller.destroy);
 
+// Implementera addCars
+// curl -X POST http://localhost:3000/pokemonfriends/71/addCard -H 'Content-Type: application/json' -d '{ "card" : 11  }'
+router.post('/:id/addCard', pokemonfriends_controller.addCard);
+
 module.exports = router;
