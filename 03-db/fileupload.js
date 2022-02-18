@@ -1,7 +1,9 @@
 const express = require('express');
 const app = express();
 const multer = require('multer');  // Ladda in multer
+const morgan = require('morgan');
 
+app.use(morgan('short'));
 app.use(express.static('static'));
 
 const storageObject = multer.diskStorage(
