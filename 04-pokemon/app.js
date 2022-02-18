@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
-
+const morgan = require('morgan');
+app.use(morgan('combined'));
 // Använd static filer
 app.use(express.static('static'));
 

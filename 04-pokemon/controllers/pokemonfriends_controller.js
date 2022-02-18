@@ -1,5 +1,6 @@
 
 const PokemonFriends = require('../models/PokemonFriends');
+const log = require('debug')('controller:pokemon_friends');
 //const modules = require('../models');
 
 /*
@@ -20,6 +21,7 @@ const create = async(req, res) => {
         )
 
     } catch (err) {
+        log('Create failed: %s', err.message);
         return res.status(500).send(
             {
                 success: false, 
@@ -56,6 +58,7 @@ const read = async(req, res) => {
             }
         });
     } catch(err) {
+        log('Read failed: %s', err.message);
         return res.status(500).send({
             success: false,
             data: err.message
@@ -84,6 +87,7 @@ const update = async(req, res) => {
         );
 
     } catch (err) {
+        log('Update failed: %s', err.message);
         return res.status(500).send(
             {
                 success: false,
@@ -108,6 +112,7 @@ const destroy = async(req, res) => {
         );
 
     } catch (err) {
+        log('Destroy failed: %s', err.message);
         return res.status(500).send(
             {
                 success: false,

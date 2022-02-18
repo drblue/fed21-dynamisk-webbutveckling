@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app",
+    "dev": "DEBUG=controller:pokemon_friends nodemon app"
   },
   "author": "",
   "license": "ISC",
@@ -12,6 +13,7 @@
     "bookshelf": "^1.2.0",
     "dotenv": "^16.0.0",
     "express": "^4.17.2",
+    "morgan": "^1.10.0",
     "mysql": "^2.18.1"
   }
 }
