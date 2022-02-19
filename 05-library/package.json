@@ -1,0 +1,25 @@
+{
+  "name": "mypokemons",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bookshelf": "^1.2.0",
+    "cross-env": "^7.0.3",
+    "dotenv": "^15.0.0",
+    "express": "^4.17.2",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
+    "winston": "^3.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
