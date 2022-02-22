@@ -10,10 +10,10 @@ router.get('/', authorController.index);
 router.get('/:authorId', authorController.show);
 
 /* Store a new resource */
-router.post('/', [authorValidationRules.createRules], authorController.store);
+router.post('/', authorValidationRules.createRules, authorController.store);
 
 /* Update a specific resource */
-router.put('/:authorId', [authorValidationRules.updateRules], authorController.update);
+router.put('/:authorId', authorValidationRules.updateRules, authorController.update);
 
 /* Destroy a specific resource */
 router.delete('/:authorId', authorController.destroy);
