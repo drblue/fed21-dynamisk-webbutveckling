@@ -95,25 +95,17 @@ const update = async (req, res) => {
 		return;
 	}
 
-	const data = {};
-
-	// update password if part of the request
-	if (req.body.password) {
-		data.password = req.body.password;
+	// check for any validation errors
+	const errors = validationResult(req);
+	if (!errors.isEmpty()) {
+		return res.status(422).send({ status: 'fail', data: errors.array() });
 	}
 
-	// update first_name if part of the request
-	if (req.body.first_name) {
-		data.first_name = req.body.first_name;
-	}
-
-	// update last_name if part of the request
-	if (req.body.last_name) {
-		data.last_name = req.body.last_name;
-	}
+	// get only the validated data from the request
+	const validData = matchedData(req);
 
 	try {
-		const updatedUser = await user.save(data);
+		const updatedUser = await user.save(validData);
 		debug("Updated user successfully: %O", updatedUser);
 
 		res.send({

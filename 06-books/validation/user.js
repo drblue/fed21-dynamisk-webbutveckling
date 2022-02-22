@@ -13,7 +13,9 @@ const createRules = [
 
 // allow only password, first_name, last_name to be updated, and only optionally
 const updateRules = [
-
+	body('password').optional().isLength({ min: 4 }),
+	body('first_name').optional().isLength({ min: 2 }),
+	body('last_name').optional().isLength({ min: 2 }),
 ];
 
 module.exports = {
