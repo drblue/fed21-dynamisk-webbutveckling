@@ -2,9 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const logger = require('morgan');
 
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
-
 // instantiate express
 const app = express();
 
@@ -15,7 +12,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // routes
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use(require('./routes'));
 
 module.exports = app;
