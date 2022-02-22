@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bookController = require('../controllers/book_controller');
+const bookValidationRules = require('../validation/book');
 
 /* Get all resources */
 router.get('/', bookController.index);
@@ -9,10 +10,10 @@ router.get('/', bookController.index);
 router.get('/:bookId', bookController.show);
 
 /* Store a new resource */
-router.post('/', bookController.store);
+router.post('/', [bookValidationRules.createRules], bookController.store);
 
 /* Update a specific resource */
-router.put('/:bookId', bookController.update);
+router.put('/:bookId', [bookValidationRules.updateRules], bookController.update);
 
 /* Destroy a specific resource */
 router.delete('/:bookId', bookController.destroy);

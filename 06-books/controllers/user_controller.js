@@ -3,8 +3,8 @@
  */
 
 const debug = require('debug')('books:user_controller');
-const models = require('../models');
 const { matchedData, validationResult } = require('express-validator');
+const models = require('../models');
 
 /**
  * Get all resources

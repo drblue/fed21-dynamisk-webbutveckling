@@ -3,6 +3,7 @@
  */
 
 const debug = require('debug')('books:book_controller');
+const { matchedData, validationResult } = require('express-validator');
 const models = require('../models');
 
 /**
@@ -44,15 +45,17 @@ const show = async (req, res) => {
  * POST /
  */
 const store = async (req, res) => {
-	const data = {
-		title: req.body.title,
-		isbn: req.body.isbn,
-		pages: req.body.pages,
-		author_id: req.body.author_id,
-	};
+	// check for any validation errors
+	const errors = validationResult(req);
+	if (!errors.isEmpty()) {
+		return res.status(422).send({ status: 'fail', data: errors.array() });
+	}
+
+	// get only the validated data from the request
+	const validData = matchedData(req);
 
 	try {
-		const book = await new models.Book(data).save();
+		const book = await new models.Book(validData).save();
 		debug("Created new book successfully: %O", book);
 
 		res.send({
@@ -76,11 +79,47 @@ const store = async (req, res) => {
  *
  * POST /:bookId
  */
-const update = (req, res) => {
-	res.status(405).send({
-		status: 'fail',
-		message: 'Method Not Allowed.',
-	});
+const update = async (req, res) => {
+	const bookId = req.params.bookId;
+
+	// make sure book exists
+	const book = await new models.Book({ id: bookId }).fetch({ require: false });
+	if (!book) {
+		debug("Book to update was not found. %o", { id: bookId });
+		res.status(404).send({
+			status: 'fail',
+			data: 'Book Not Found',
+		});
+		return;
+	}
+
+	// check for any validation errors
+	const errors = validationResult(req);
+	if (!errors.isEmpty()) {
+		return res.status(422).send({ status: 'fail', data: errors.array() });
+	}
+
+	// get only the validated data from the request
+	const validData = matchedData(req);
+
+	try {
+		const updatedBook = await book.save(validData);
+		debug("Updated book successfully: %O", updatedBook);
+
+		res.send({
+			status: 'success',
+			data: {
+				book,
+			},
+		});
+
+	} catch (error) {
+		res.status(500).send({
+			status: 'error',
+			message: 'Exception thrown in database when updating a new book.',
+		});
+		throw error;
+	}
 }
 
 /**

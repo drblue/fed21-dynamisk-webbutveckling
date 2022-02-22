@@ -5,6 +5,12 @@
 const { body } = require('express-validator');
 const models = require('../models');
 
+/**
+ * Create User validation rules
+ *
+ * Required: username, password, first_name, last_name
+ * Optional: -
+ */
 const createRules = [
 	body('username').exists().isLength({ min: 3 }).custom(async value => {
 		const user = await new models.User({ username: value }).fetch({ require: false });
@@ -19,7 +25,12 @@ const createRules = [
 	body('last_name').exists().isLength({ min: 2 }),
 ];
 
-// allow only password, first_name, last_name to be updated, and only optionally
+/**
+ * Update User validation rules
+ *
+ * Required: -
+ * Optional: password, first_name, last_name
+ */
 const updateRules = [
 	body('password').optional().isLength({ min: 4 }),
 	body('first_name').optional().isLength({ min: 2 }),
