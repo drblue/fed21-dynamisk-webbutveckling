@@ -38,9 +38,18 @@ const updateProfile = async (req, res) => {
  * GET /books
  */
 const getBooks = async (req, res) => {
-	res.status(405).send({
-		status: 'error',
-		message: 'This is a workshop.',
+	// get user and also eager-load the books-relation
+	// const user = await new models.User({ id: req.user.id })
+	// 	.fetch({ withRelated: ['books'] });
+
+	// "lazy load" the books-relation
+	await req.user.load('books');
+
+	res.status(200).send({
+		status: 'success',
+		data: {
+			books: req.user.related('books'),
+		},
 	});
 }
 
