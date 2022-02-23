@@ -76,8 +76,27 @@ const getBooks = async (req, res) => {
 	});
 }
 
+/**
+ * Add a book to the authenticated user
+ *
+ * @todo 1. Validate that the book actually exists
+ * @todo 2. Validate that the book they are trying to add isn't already in the list
+ *
+ * POST /books
+ * {
+ *   book_id: 5
+ * }
+ */
+const addBook = async (req, res) => {
+	res.status(405).send({
+		status: 'error',
+		message: 'This is a workshop.',
+	});
+}
+
 module.exports = {
 	getProfile,
 	updateProfile,
 	getBooks,
+	addBook,
 }

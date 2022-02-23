@@ -18,4 +18,10 @@ router.put('/', profileValidationRules.updateRules, profileController.updateProf
  */
 router.get('/books', profileController.getBooks);
 
+/**
+ * Add a book to the authenticated user
+ *
+ */
+router.post('/books', profileController.addBook);
+
 module.exports = router;
