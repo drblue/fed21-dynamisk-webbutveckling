@@ -12,13 +12,10 @@ const models = require('../models');
  * GET /
  */
 const getProfile = async (req, res) => {
-	// somehow get the authenticated user
-	// and return it
-
 	res.send({
 		status: 'success',
 		data: {
-			user: null,
+			user: req.user,
 		}
 	});
 }
