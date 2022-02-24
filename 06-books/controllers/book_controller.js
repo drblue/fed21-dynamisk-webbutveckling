@@ -77,7 +77,7 @@ const store = async (req, res) => {
 /**
  * Update a specific resource
  *
- * POST /:bookId
+ * PUT /:bookId
  */
 const update = async (req, res) => {
 	const bookId = req.params.bookId;
