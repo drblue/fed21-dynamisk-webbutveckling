@@ -88,10 +88,33 @@ const getBooks = async (req, res) => {
  * }
  */
 const addBook = async (req, res) => {
-	res.status(405).send({
-		status: 'error',
-		message: 'This is a workshop.',
-	});
+	// check for any validation errors
+	const errors = validationResult(req);
+	if (!errors.isEmpty()) {
+		return res.status(422).send({ status: 'fail', data: errors.array() });
+	}
+
+	// get only the validated data from the request
+	const validData = matchedData(req);
+
+	try {
+		const result = await req.user.books().attach(validData.book_id);
+		debug("Added book to user successfully: %O", result);
+
+		res.send({
+			status: 'success',
+			data: {
+				result: result,
+			},
+		});
+
+	} catch (error) {
+		res.status(500).send({
+			status: 'error',
+			message: 'Exception thrown in database when adding a book to a user.',
+		});
+		throw error;
+	}
 }
 
 module.exports = {

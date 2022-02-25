@@ -17,6 +17,17 @@ const updateRules = [
 	body('last_name').optional().isLength({ min: 2 }),
 ];
 
+/**
+ * Add book to profile validation rules
+ *
+ * Required: book_id
+ * Optional: -
+ */
+const addBookRules = [
+	body('book_id').exists().isInt({ min: 1 }),
+];
+
 module.exports = {
+	addBookRules,
 	updateRules,
 }
