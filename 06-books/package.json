@@ -8,6 +8,7 @@
     "debug": "cross-env DEBUG=books:* nodemon --inspect ./bin/www"
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "bookshelf": "^1.2.0",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
