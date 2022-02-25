@@ -104,14 +104,10 @@ const addBook = async (req, res) => {
 	const books = req.user.related('books');
 
 	// check if book is already in the user's list of books
-	let already_exists = false;
-	books.forEach(book => {
-		if (book.id == validData.book_id) {
-			already_exists = true;
-		}
-	});
+	const existing_book = books.find(book => book.id == validData.book_id);
 
-	if (already_exists) {
+	// if it already exists, bail
+	if (existing_book) {
 		return res.send({
 			status: 'fail',
 			data: 'Book already exists.',
