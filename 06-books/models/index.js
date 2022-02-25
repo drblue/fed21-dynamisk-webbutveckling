@@ -1,5 +1,6 @@
 // Setting up the database connection
 const knex = require('knex')({
+	debug: true,
 	client: 'mysql',
 	connection: {
 		host: process.env.DB_HOST || 'localhost',
