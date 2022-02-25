@@ -2,9 +2,9 @@
  * Profile Controller
  */
 
+const bcrypt = require('bcrypt');
 const debug = require('debug')('books:profile_controller');
 const { matchedData, validationResult } = require('express-validator');
-const models = require('../models');
 
 /**
  * Get authenticated user's profile
@@ -34,6 +34,20 @@ const updateProfile = async (req, res) => {
 
 	// get only the validated data from the request
 	const validData = matchedData(req);
+
+	// update the user's password, but only if they sent us a new password
+	if (validData.password) {
+		try {
+			validData.password = await bcrypt.hash(validData.password, 10);
+
+		} catch (error) {
+			res.status(500).send({
+				status: 'error',
+				message: 'Exception thrown when hashing the password.',
+			});
+			throw error;
+		}
+	}
 
 	try {
 		const updatedUser = await req.user.save(validData);
