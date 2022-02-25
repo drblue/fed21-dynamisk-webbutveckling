@@ -97,6 +97,27 @@ const addBook = async (req, res) => {
 	// get only the validated data from the request
 	const validData = matchedData(req);
 
+	// lazy-load book relationship
+	await req.user.load('books');
+
+	// get the user's books
+	const books = req.user.related('books');
+
+	// check if book is already in the user's list of books
+	let already_exists = false;
+	books.forEach(book => {
+		if (book.id == validData.book_id) {
+			already_exists = true;
+		}
+	});
+
+	if (already_exists) {
+		return res.send({
+			status: 'fail',
+			data: 'Book already exists.',
+		});
+	}
+
 	try {
 		const result = await req.user.books().attach(validData.book_id);
 		debug("Added book to user successfully: %O", result);
