@@ -24,7 +24,14 @@ const updateRules = [
  * Optional: -
  */
 const addBookRules = [
-	body('book_id').exists().isInt({ min: 1 }),
+	body('book_id').exists().bail().custom(async value => {
+		const book = await new models.Book({ id: value }).fetch({ require: false });
+		if (!book) {
+			return Promise.reject(`Book with ID ${value} does not exist.`);
+		}
+
+		return Promise.resolve();
+	}),
 ];
 
 module.exports = {

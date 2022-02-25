@@ -103,9 +103,7 @@ const addBook = async (req, res) => {
 
 		res.send({
 			status: 'success',
-			data: {
-				result: result,
-			},
+			data: null,
 		});
 
 	} catch (error) {
