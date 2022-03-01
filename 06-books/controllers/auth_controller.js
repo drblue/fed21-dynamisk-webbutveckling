@@ -41,7 +41,7 @@ const register = async (req, res) => {
 	// generate a hash of `validData.password`
 	// and overwrite `validData.password` with the generated hash
 	try {
-		validData.password = await bcrypt.hash(validData.password, 10);
+		validData.password = await bcrypt.hash(validData.password, models.User.hashSaltRounds);
 
 	} catch (error) {
 		res.status(500).send({
