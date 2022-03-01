@@ -13,6 +13,9 @@ router.use('/authors', require('./authors'));
 router.use('/books', require('./books'));
 router.use('/profile', auth.basic, require('./profile'));
 
+// login a user and get a JWT token
+router.post('/login', authController.login);
+
 // register a new user
 router.post('/register', userValidationRules.createRules, authController.register);
 

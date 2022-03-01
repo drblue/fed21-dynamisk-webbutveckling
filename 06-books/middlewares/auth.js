@@ -48,20 +48,8 @@ const basic = async (req, res, next) => {
 	// split decoded payload into "<username>:<password>"
 	const [username, password] = decodedPayload.split(':');
 
-	// find user based on the username (bail if no such user exists)
-	const user = await new User({ username }).fetch({ require: false });
+	const user = await User.login(username, password);
 	if (!user) {
-		return res.status(401).send({
-			status: 'fail',
-			data: 'Authorization failed',
-		});
-	}
-	const hash = user.get('password');
-
-	// hash the incoming cleartext password using the salt from the db
-	// and compare if the generated hash matches the db-hash
-	const result = await bcrypt.compare(password, hash);
-	if (!result) {
 		return res.status(401).send({
 			status: 'fail',
 			data: 'Authorization failed',
