@@ -11,7 +11,7 @@ router.get('/', (req, res, next) => {
 
 router.use('/authors', require('./authors'));
 router.use('/books', require('./books'));
-router.use('/profile', auth.basic, require('./profile'));
+router.use('/profile', auth.validateJwtToken, require('./profile'));
 
 // login a user and get a JWT token
 router.post('/login', authController.login);
