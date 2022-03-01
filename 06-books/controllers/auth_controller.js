@@ -4,6 +4,7 @@
 
 const bcrypt = require('bcrypt');
 const debug = require('debug')('books:auth_controller');
+const jwt = require('jsonwebtoken');
 const { matchedData, validationResult } = require('express-validator');
 const models = require('../models');
 
@@ -17,8 +18,36 @@ const models = require('../models');
  * }
  */
 const login = async (req, res) => {
-	// check if a user with the username exists
+	// destructure username and password from request body
+	const { username, password } = req.body;
 
+	// login the user
+	const user = await models.User.login(username, password);
+	if (!user) {
+		return res.status(401).send({
+			status: 'fail',
+			data: 'Authentication failed.',
+		});
+	}
+
+	// construct jwt payload
+	const payload = {
+		sub: user.get('username'),
+		user_id: user.get('id'),
+		name: user.get('first_name') + ' ' + user.get('last_name'),
+	}
+
+	// sign payload and get access-token
+	const access_token = jwt.sign(payload, 'shhh');
+
+	// respond with the access-token
+	return res.send({
+		status: 'success',
+		data: {
+			access_token,
+//			access_token: access_token,
+		}
+	});
 }
 
 /**
