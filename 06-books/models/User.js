@@ -12,6 +12,10 @@ module.exports = (bookshelf) => {
 	}, {
 		hashSaltRounds: 10,
 
+		async fetchById(id) {
+			return await new this({ id }).fetch();
+		},
+
 		async login(username, password) {
 			// find user based on the username (bail if no such user exists)
 			const user = await new this({ username }).fetch({ require: false });

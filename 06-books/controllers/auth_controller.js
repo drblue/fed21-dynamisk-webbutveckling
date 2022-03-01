@@ -38,7 +38,7 @@ const login = async (req, res) => {
 	}
 
 	// sign payload and get access-token
-	const access_token = jwt.sign(payload, 'shhh');
+	const access_token = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET);
 
 	// respond with the access-token
 	return res.send({

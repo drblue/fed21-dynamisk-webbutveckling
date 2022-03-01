@@ -5,7 +5,7 @@
 const bcrypt = require('bcrypt');
 const debug = require('debug')('books:profile_controller');
 const { matchedData, validationResult } = require('express-validator');
-const models = require('../models');
+const { User } = require('../models');
 
 /**
  * Get authenticated user's profile
@@ -13,12 +13,6 @@ const models = require('../models');
  * GET /
  */
 const getProfile = async (req, res) => {
-	/**
-	 * @todo req.user is now a simple object with the payload.
-	 * Query the database for a User with the id `req.user.user_id`,
-	 * and return the result.
-	 */
-
 	try {
 		const user = await User.fetchById(req.user.user_id);
 
