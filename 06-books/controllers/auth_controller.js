@@ -42,12 +42,17 @@ const login = async (req, res) => {
 		expiresIn: process.env.ACCESS_TOKEN_LIFETIME || '1h',
 	});
 
+	// sign payload and get refresh-token
+	const refresh_token = jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET, {
+		expiresIn: process.env.REFRESH_TOKEN_LIFETIME || '1w',
+	});
+
 	// respond with the access-token
 	return res.send({
 		status: 'success',
 		data: {
 			access_token,
-//			access_token: access_token,
+			refresh_token,
 		}
 	});
 }
