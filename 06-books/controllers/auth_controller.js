@@ -38,7 +38,9 @@ const login = async (req, res) => {
 	}
 
 	// sign payload and get access-token
-	const access_token = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET);
+	const access_token = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
+		expiresIn: process.env.ACCESS_TOKEN_LIFETIME || '1h',
+	});
 
 	// respond with the access-token
 	return res.send({
