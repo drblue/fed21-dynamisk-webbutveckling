@@ -7,7 +7,7 @@
 require('dotenv').config();
 
 const app = require('../app');
-const debug = require('debug')('books:server');
+const debug = require('debug')('chat:server');
 const http = require('http');
 
 /**
