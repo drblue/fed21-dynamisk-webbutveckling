@@ -31,6 +31,10 @@
 	/* height: calc(100vh - 2.25rem - 2px); */
 }
 
+#messages .notice {
+	font-style: italic;
+}
+
 /*
 #messages {
 	display: flex;

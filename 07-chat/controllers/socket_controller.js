@@ -7,9 +7,14 @@ const debug = require('debug')('chat:socket_controller');
 module.exports = function(socket) {
 	debug('a new client has connected', socket.id);
 
+	// broadcast that a new user has connected
+	socket.broadcast.emit('user:connected');
+
 	// handle user disconnect
 	socket.on('disconnect', function() {
 		debug(`Client ${this.id} disconnected :(`);
+
+		this.broadcast.emit('user:disconnected');
 	});
 
 	// handle user emitting a new message

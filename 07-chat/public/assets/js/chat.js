@@ -4,9 +4,12 @@ const messageEl = document.querySelector('#message');
 
 const socket = io();
 
-const addMessageToChat = message => {
+const addMessageToChat = (message) => {
 	// create new `li` element
 	const liEl = document.createElement('li');
+
+	// set class of `li` to `message`
+	liEl.classList.add('message');
 
 	// set content of `li` element
 	liEl.innerText = message;
@@ -17,6 +20,26 @@ const addMessageToChat = message => {
 	// scroll `li` element into view
 	liEl.scrollIntoView();
 }
+
+const addNoticeToChat = notice => {
+	const liEl = document.createElement('li');
+	liEl.classList.add('notice');
+
+	liEl.innerText = notice;
+
+	messagesEl.appendChild(liEl);
+	liEl.scrollIntoView();
+}
+
+// listen for when a new user connects
+socket.on('user:connected', () => {
+	addNoticeToChat("Someone connected");
+});
+
+// listen for when a user disconnects
+socket.on('user:disconnected', () => {
+	addNoticeToChat("Someone disconnected");
+});
 
 // listen for incoming messages
 socket.on('chat:message', message => {
