@@ -1,8 +1,13 @@
+const socket = io();
+
+const startEl = document.querySelector('#start');
+const chatWrapperEl = document.querySelector('#chat-wrapper');
+const usernameForm = document.querySelector('#username-form');
 const messagesEl = document.querySelector('#messages'); // ul element containing all messages
 const messageForm = document.querySelector('#message-form');
 const messageEl = document.querySelector('#message');
 
-const socket = io();
+let username = null;
 
 const addMessageToChat = (message, ownMsg = false) => {
 	// create new `li` element
@@ -52,11 +57,26 @@ socket.on('chat:message', message => {
 	addMessageToChat(message);
 });
 
+// get username from form and show chat
+usernameForm.addEventListener('submit', e => {
+	e.preventDefault();
+
+	username = usernameForm.username.value;
+
+	// hide start view
+	startEl.classList.add('hide');
+
+	// show chat view
+	chatWrapperEl.classList.remove('hide');
+
+	// focus on inputMessage
+	messageEl.focus();
+});
+
 // send message to server
 messageForm.addEventListener('submit', e => {
 	e.preventDefault();
 
-	console.log("Someone submitted something:", messageEl.value);
 	if (!messageEl.value) {
 		return;
 	}
