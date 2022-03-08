@@ -25,11 +25,7 @@ app.set('port', port);
 const server = http.createServer(app);
 const io = new socketio.Server(server);
 
-io.on('connection', function(socket) {
-	debug('a new client has connected', socket.id);
-
-	socket.emit('welcome', 'Welcome to Chat 3000!');
-});
+io.on('connection', require('../controllers/socket_controller'));
 
 /**
  * Listen on provided port, on all network interfaces.

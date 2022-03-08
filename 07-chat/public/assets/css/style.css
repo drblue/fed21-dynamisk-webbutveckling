@@ -28,7 +28,7 @@
 #message-wrapper {
 	flex-grow: 1;
 	overflow-y: scroll;
-	height: calc(100vh - 38px);
+	/* height: calc(100vh - 2.25rem - 2px); */
 }
 
 /*
