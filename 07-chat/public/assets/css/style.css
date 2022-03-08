@@ -31,15 +31,6 @@
 	/* height: calc(100vh - 2.25rem - 2px); */
 }
 
-#messages .notice {
-	font-style: italic;
-}
-
-#messages .message.you {
-	color: cornflowerblue;
-}
-
-/*
 #messages {
 	display: flex;
 	flex-wrap: wrap;
@@ -47,7 +38,24 @@
 	list-style: none;
 	padding: 0;
 }
-*/
+
+#messages .message {
+	background-color: lightgray;
+	border-radius: 0.75rem;
+	margin: 0.1rem;
+	padding: 0.5rem 0.75rem;
+	align-self: flex-start;
+}
+
+#messages .message.you {
+	background-color: cornflowerblue;
+	color: white;
+	align-self: flex-end;
+}
+
+#messages .notice {
+	color: #555;
+}
 
 #users {
 	flex-basis: 20%;
