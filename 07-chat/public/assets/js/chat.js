@@ -4,7 +4,7 @@ const messageEl = document.querySelector('#message');
 
 const socket = io();
 
-const addMessageToChat = (message) => {
+const addMessageToChat = (message, ownMsg = false) => {
 	// create new `li` element
 	const liEl = document.createElement('li');
 
@@ -13,6 +13,10 @@ const addMessageToChat = (message) => {
 
 	// set content of `li` element
 	liEl.innerText = message;
+
+	if (ownMsg) {
+		liEl.classList.add('you');
+	}
 
 	// append `li` element to `#messages`
 	messagesEl.appendChild(liEl);
@@ -61,7 +65,7 @@ messageForm.addEventListener('submit', e => {
 	socket.emit('chat:message', messageEl.value);
 
 	// add message to chat
-	addMessageToChat(messageEl.value);
+	addMessageToChat(messageEl.value, true);
 
 	// clear message input element and focus
 	messageEl.value = '';
