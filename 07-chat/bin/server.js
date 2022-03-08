@@ -9,6 +9,7 @@ require('dotenv').config();
 const app = require('../app');
 const debug = require('debug')('chat:server');
 const http = require('http');
+const socketio = require('socket.io');
 
 /**
  * Get port from environment and store in Express.
@@ -22,6 +23,13 @@ app.set('port', port);
  */
 
 const server = http.createServer(app);
+const io = new socketio.Server(server);
+
+io.on('connection', function(socket) {
+	debug('a new client has connected', socket.id);
+
+	socket.emit('welcome', 'Welcome to Chat 3000!');
+});
 
 /**
  * Listen on provided port, on all network interfaces.
