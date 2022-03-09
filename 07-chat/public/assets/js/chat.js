@@ -16,12 +16,14 @@ const addMessageToChat = (message, ownMsg = false) => {
 	// set class of `li` to `message`
 	liEl.classList.add('message');
 
-	// set content of `li` element
-	liEl.innerText = message;
-
 	if (ownMsg) {
 		liEl.classList.add('you');
 	}
+
+	// set content of `li` element
+	liEl.innerHTML = ownMsg
+		? message.content
+		: `<span class="user">${message.username}</span>: ${message.content}`;
 
 	// append `li` element to `#messages`
 	messagesEl.appendChild(liEl);
@@ -81,11 +83,16 @@ messageForm.addEventListener('submit', e => {
 		return;
 	}
 
+	const msg = {
+		username,
+		content: messageEl.value,
+	}
+
 	// send message to server
-	socket.emit('chat:message', messageEl.value);
+	socket.emit('chat:message', msg);
 
 	// add message to chat
-	addMessageToChat(messageEl.value, true);
+	addMessageToChat(msg, true);
 
 	// clear message input element and focus
 	messageEl.value = '';

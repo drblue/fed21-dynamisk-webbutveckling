@@ -68,6 +68,10 @@
 	align-self: flex-end;
 }
 
+#messages .message .user {
+	font-weight: 700;
+}
+
 #messages .notice {
 	color: #555;
 }
