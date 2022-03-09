@@ -43,13 +43,13 @@ const addNoticeToChat = notice => {
 }
 
 // listen for when a new user connects
-socket.on('user:connected', () => {
-	addNoticeToChat("Someone connected");
+socket.on('user:connected', (username) => {
+	addNoticeToChat(`${username} connected 🥳`);
 });
 
 // listen for when a user disconnects
-socket.on('user:disconnected', () => {
-	addNoticeToChat("Someone disconnected");
+socket.on('user:disconnected', (username) => {
+	addNoticeToChat(`${username} disconnected 😢`);
 });
 
 // listen for incoming messages
@@ -59,20 +59,28 @@ socket.on('chat:message', message => {
 	addMessageToChat(message);
 });
 
-// get username from form and show chat
+// get username from form and emit `user:joined` and then show chat
 usernameForm.addEventListener('submit', e => {
 	e.preventDefault();
 
 	username = usernameForm.username.value;
 
-	// hide start view
-	startEl.classList.add('hide');
+	// emit `user:joined` event and when we get acknowledgement, THEN show the chat
+	socket.emit('user:joined', username, (status) => {
+		// we've received acknowledgement from the server
+		console.log("Server acknowledged that user joined", status);
 
-	// show chat view
-	chatWrapperEl.classList.remove('hide');
+		if (status.success) {
+			// hide start view
+			startEl.classList.add('hide');
 
-	// focus on inputMessage
-	messageEl.focus();
+			// show chat view
+			chatWrapperEl.classList.remove('hide');
+
+			// focus on inputMessage
+			messageEl.focus();
+		}
+	});
 });
 
 // send message to server
