@@ -6,28 +6,49 @@ const debug = require('debug')('chat:socket_controller');
 
 let io = null; // socket.io server instance
 
-// list of socket-ids and their username
-const users = {};
+// list of rooms and their connected users
+const users = {}
+const rooms = [
+	{
+		id: 'general',
+		name: 'General',
+		users: {},
+	},
+	{
+		id: 'major',
+		name: 'Major',
+		users: {},
+	},
+	{
+		id: 'sergant',
+		name: 'Sergant',
+		users: {},
+	},
+];
 
 const handleDisconnect = function() {
 	debug(`Client ${this.id} disconnected :(`);
 
 	// let everyone connected know that user has disconnected
-	this.broadcast.emit('user:disconnected', users[this.id]);
+	this.broadcast.to().emit('user:disconnected', users[this.id]);
 
 	// remove user from list of connected users
 	delete users[this.id];
 }
 
 // Handle when a user has joined the chat
-const handleUserJoined = function(username, room, callback) {
-	// associate socket id with username
-	users[this.id] = username;
-
-	debug(`User ${username} with socket id ${this.id} wants to join room '${room}'`);
+const handleUserJoined = function(username, room_id, callback) {
+	debug(`User ${username} with socket id ${this.id} wants to join room '${room_id}'`);
 
 	// join room
-	this.join(room);
+	this.join(room_id);
+
+	// add socket to list of online users in this room
+	// a) find room object with `id` === `general`
+	const room = rooms.find(chatroom => chatroom.id === room_id)
+
+	// b) add socket to room's `users` object
+	room.users[this.id] = username;
 
 	// let everyone know that someone has connected to the chat
 	this.broadcast.to(room).emit('user:connected', username);
