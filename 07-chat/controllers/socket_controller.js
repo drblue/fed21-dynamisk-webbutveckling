@@ -14,7 +14,7 @@ const handleDisconnect = function() {
 	debug(`Client ${socket.id} disconnected :(`);
 
 	// let everyone connected know that user has disconnected
-	this.broadcast.emit('user:disconnected', users[socket.id]);
+	socket.broadcast.emit('user:disconnected', users[socket.id]);
 
 	// remove user from list of connected users
 	delete users[socket.id];
@@ -40,7 +40,7 @@ const handleChatMessage = function(message) {
 	debug('Someone said something: ', message);
 
 	// emit `chat:message` event to everyone EXCEPT the sender
-	this.broadcast.emit('chat:message', message);
+	socket.broadcast.emit('chat:message', message);
 }
 
 module.exports = function(_socket, _io) {
