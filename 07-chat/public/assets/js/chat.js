@@ -23,7 +23,7 @@ const addMessageToChat = (message, ownMsg = false) => {
 	// set content of `li` element
 	liEl.innerHTML = ownMsg
 		? message.content
-		: `<span class="user">${message.username}</span>: ${message.content}`;
+		: `<span class="user">${message.username}</span>: ${message.content} ${message.timestamp}`;
 
 	// append `li` element to `#messages`
 	messagesEl.appendChild(liEl);
@@ -94,6 +94,7 @@ messageForm.addEventListener('submit', e => {
 	const msg = {
 		username,
 		content: messageEl.value,
+		timestamp: Date.now(),
 	}
 
 	// send message to server
