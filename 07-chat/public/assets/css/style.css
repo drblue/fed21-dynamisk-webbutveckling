@@ -68,7 +68,13 @@
 	align-self: flex-end;
 }
 
+#messages .message .time {
+	font-size: 60%;
+	margin-left: 0.25rem;
+}
+
 #messages .message .user {
+	display: block;
 	font-weight: 700;
 }
 

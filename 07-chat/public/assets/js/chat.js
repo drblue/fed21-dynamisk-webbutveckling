@@ -20,10 +20,13 @@ const addMessageToChat = (message, ownMsg = false) => {
 		liEl.classList.add('you');
 	}
 
+	// get human readable time
+	const time = moment(message.timestamp).format('HH:mm:ss');
+
 	// set content of `li` element
 	liEl.innerHTML = ownMsg
 		? message.content
-		: `<span class="user">${message.username}</span>: ${message.content} ${message.timestamp}`;
+		: `<span class="user">${message.username}</span><span class="content">${message.content}</span><span class="time">${time}</span>`;
 
 	// append `li` element to `#messages`
 	messagesEl.appendChild(liEl);
