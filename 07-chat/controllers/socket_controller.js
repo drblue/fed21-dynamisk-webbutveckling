@@ -7,8 +7,10 @@ const debug = require('debug')('chat:socket_controller');
 // list of socket-ids and their username
 const users = {};
 
-module.exports = function(socket) {
+module.exports = function(socket, io) {
 	debug('a new client has connected', socket.id);
+
+	io.emit("new-connection", "A new user connected");
 
 	// handle user disconnect
 	socket.on('disconnect', function() {
