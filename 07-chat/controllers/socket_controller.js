@@ -4,6 +4,9 @@
 
 const debug = require('debug')('chat:socket_controller');
 
+let io = null; // socket.io server instance
+let socket = null; // socket to the client
+
 // list of socket-ids and their username
 const users = {};
 
@@ -40,7 +43,10 @@ const handleChatMessage = function(message) {
 	this.broadcast.emit('chat:message', message);
 }
 
-module.exports = function(socket, io) {
+module.exports = function(_socket, _io) {
+	io = _io;
+	socket = _socket;
+
 	debug('a new client has connected', socket.id);
 
 	io.emit("new-connection", "A new user connected");
