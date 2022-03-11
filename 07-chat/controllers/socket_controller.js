@@ -29,11 +29,19 @@ const rooms = [
 const handleDisconnect = function() {
 	debug(`Client ${this.id} disconnected :(`);
 
-	// let everyone connected know that user has disconnected
-	this.broadcast.to().emit('user:disconnected', users[this.id]);
+	// find the room that this socket is part of
+	const room = rooms.find(chatroom => chatroom.users.hasOwnProperty(this.id));
 
-	// remove user from list of connected users
-	delete users[this.id];
+	// if socket was not in a room, don't broadcast disconnect
+	if (!room) {
+		return;
+	}
+
+	// let everyone in the room know that this user has disconnected
+	this.broadcast.to(room.id).emit('user:disconnected', room.users[this.id]);
+
+	// remove user from list of users in that room
+	delete room.users[this.id];
 }
 
 // Handle when a user has joined the chat
@@ -51,11 +59,12 @@ const handleUserJoined = function(username, room_id, callback) {
 	room.users[this.id] = username;
 
 	// let everyone know that someone has connected to the chat
-	this.broadcast.to(room).emit('user:connected', username);
+	this.broadcast.to(room.id).emit('user:connected', username);
 
 	// confirm join
 	callback({
 		success: true,
+		users: rooms.users
 	});
 }
 
