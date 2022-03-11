@@ -84,6 +84,9 @@ usernameForm.addEventListener('submit', e => {
 			// show chat view
 			chatWrapperEl.classList.remove('hide');
 
+			// set room name as chat title
+			document.querySelector('#chat-title').innerText = room;
+
 			// focus on inputMessage
 			messageEl.focus();
 		}
