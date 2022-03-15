@@ -56,6 +56,25 @@ socket.on('user:disconnected', (username) => {
 	addNoticeToChat(`${username} disconnected 😢`);
 });
 
+// listen for when we're disconnected
+socket.on('disconnect', (reason) => {
+	if (reason === 'io server disconnect') {
+		// reconnect to the server
+		socket.connect();
+	}
+	addNoticeToChat(`You were disconnected. Reason: ${reason} 😳`);
+});
+
+// listen for when we're reconnected
+socket.io.on('reconnect', () => {
+	// join room? but only if we were in the chat previously
+	if (username) {
+		socket.emit('user:joined', username, room, (status) => {
+			addNoticeToChat(`You reconnected 🥳`);
+		});
+	}
+});
+
 // listen for incoming messages
 socket.on('chat:message', message => {
 	console.log("Someone said something:", message);
