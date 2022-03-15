@@ -42,6 +42,9 @@ const handleDisconnect = function() {
 
 	// remove user from list of users in that room
 	delete room.users[this.id];
+
+	// broadcast list of users in room to all connected sockets EXCEPT ourselves
+	this.broadcast.to(room.id).emit('user:list', room.users);
 }
 
 // Handle when a user has joined the chat
@@ -64,8 +67,12 @@ const handleUserJoined = function(username, room_id, callback) {
 	// confirm join
 	callback({
 		success: true,
-		users: rooms.users
+		roomName: room.name,
+		users: room.users
 	});
+
+	// broadcast list of users in room to all connected sockets EXCEPT ourselves
+	this.broadcast.to(room.id).emit('user:list', room.users);
 }
 
 const handleChatMessage = function(message) {

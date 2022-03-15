@@ -46,6 +46,12 @@ const addNoticeToChat = notice => {
 	liEl.scrollIntoView();
 }
 
+// update user list
+const updateUserList = users => {
+	document.querySelector('#online-users').innerHTML =
+		Object.values(users).map(username => `<li>${username}</li>`).join("");
+}
+
 // listen for when a new user connects
 socket.on('user:connected', (username) => {
 	addNoticeToChat(`${username} connected 🥳`);
@@ -55,6 +61,11 @@ socket.on('user:connected', (username) => {
 socket.on('user:disconnected', (username) => {
 	addNoticeToChat(`${username} disconnected 😢`);
 });
+
+// listen for when we receive an updated list of online users (in this room)
+socket.on('user:list', users => {
+	updateUserList(users);
+})
 
 // listen for when we're disconnected
 socket.on('disconnect', (reason) => {
@@ -104,10 +115,13 @@ usernameForm.addEventListener('submit', e => {
 			chatWrapperEl.classList.remove('hide');
 
 			// set room name as chat title
-			document.querySelector('#chat-title').innerText = room;
+			document.querySelector('#chat-title').innerText = status.roomName;
 
 			// focus on inputMessage
 			messageEl.focus();
+
+			// update list of users in room
+			updateUserList(status.users);
 		}
 	});
 });
