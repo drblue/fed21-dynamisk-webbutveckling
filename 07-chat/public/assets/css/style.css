@@ -96,4 +96,9 @@
 	margin: 0;
 	padding: 0.5rem 0.75rem;
 	list-style: none;
+	overflow-y: scroll;
+}
+
+#users li .fa-solid {
+	color: var(--bs-orange);
 }

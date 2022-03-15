@@ -49,7 +49,7 @@ const addNoticeToChat = notice => {
 // update user list
 const updateUserList = users => {
 	document.querySelector('#online-users').innerHTML =
-		Object.values(users).map(username => `<li>${username}</li>`).join("");
+		Object.values(users).map(username => `<li><span class="fa-solid fa-user-astronaut"></span> ${username}</li>`).join("");
 }
 
 // listen for when a new user connects
