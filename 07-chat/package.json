@@ -8,6 +8,7 @@
     "debug": "cross-env DEBUG=chat:*,socket.io:client,socket.io:server nodemon --inspect ./bin/server.js"
   },
   "dependencies": {
+    "@socket.io/admin-ui": "^0.2.0",
     "bcrypt": "^5.0.1",
     "bookshelf": "^1.2.0",
     "cors": "^2.8.5",
