@@ -65,8 +65,14 @@ const handleUserJoined = async function(username, room_id, callback) {
 	// let everyone know that someone has connected to the chat
 	this.broadcast.to(room.id).emit('user:connected', username);
 
+	// one hour ago
+	const one_hour_ago = Date.now() - (1000 * 60 * 60)
+
 	// get all messages from the database
-	const messages = await models.Message.find({ room: room.id });
+	const messages = await models.Message
+		// .find({ room: room.id })
+		.where('room').equals(room.id) // same as the above `.find`-line
+		.where('timestamp').gte(one_hour_ago); // you can chain `.where` and they work as AND
 
 	// confirm join
 	callback({
