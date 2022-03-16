@@ -18,8 +18,11 @@ const connect = async () => {
 }
 
 // Set up the models we want to use in our app
+const models = {}
+models.Message = require('./Message');
 
 // Export all the things
 module.exports = {
 	connect,
+	...models,
 };

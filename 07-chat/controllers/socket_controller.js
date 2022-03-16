@@ -76,11 +76,15 @@ const handleUserJoined = function(username, room_id, callback) {
 	this.broadcast.to(room.id).emit('user:list', room.users);
 }
 
-const handleChatMessage = function(message) {
-	debug('Someone said something: ', message);
+const handleChatMessage = async function(data) {
+	debug('Someone said something: ', data);
 
 	// emit `chat:message` event to everyone EXCEPT the sender
-	this.broadcast.to(message.room).emit('chat:message', message);
+	this.broadcast.to(data.room).emit('chat:message', data);
+
+	// save message in database
+	const message = new models.Message(data);
+	await message.save();
 }
 
 module.exports = function(socket, _io) {
