@@ -66,7 +66,7 @@ const handleUserJoined = async function(username, room_id, callback) {
 	this.broadcast.to(room.id).emit('user:connected', username);
 
 	// get all messages from the database
-	const messages = await models.Message.find();
+	const messages = await models.Message.find({ room: room.id });
 
 	// confirm join
 	callback({
