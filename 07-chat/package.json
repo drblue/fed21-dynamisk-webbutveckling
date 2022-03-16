@@ -17,6 +17,7 @@
     "express": "~4.16.1",
     "express-validator": "^6.14.0",
     "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.2.6",
     "morgan": "~1.9.1",
     "mysql": "^2.18.1",
     "socket.io": "^4.4.1"

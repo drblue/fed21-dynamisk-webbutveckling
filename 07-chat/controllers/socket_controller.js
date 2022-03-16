@@ -3,6 +3,7 @@
  */
 
 const debug = require('debug')('chat:socket_controller');
+const models = require('../models');
 
 let io = null; // socket.io server instance
 
