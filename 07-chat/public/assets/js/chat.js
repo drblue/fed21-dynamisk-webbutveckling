@@ -108,6 +108,12 @@ usernameForm.addEventListener('submit', e => {
 		console.log("Server acknowledged that user joined", status);
 
 		if (status.success) {
+			// render message history
+			status.messages.forEach(message => {
+				const ownMsg = message.username === username;
+				addMessageToChat(message, ownMsg);
+			});
+
 			// hide start view
 			startEl.classList.add('hide');
 

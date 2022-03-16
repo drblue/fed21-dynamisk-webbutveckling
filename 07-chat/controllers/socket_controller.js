@@ -49,7 +49,7 @@ const handleDisconnect = function() {
 }
 
 // Handle when a user has joined the chat
-const handleUserJoined = function(username, room_id, callback) {
+const handleUserJoined = async function(username, room_id, callback) {
 	debug(`User ${username} with socket id ${this.id} wants to join room '${room_id}'`);
 
 	// join room
@@ -65,10 +65,14 @@ const handleUserJoined = function(username, room_id, callback) {
 	// let everyone know that someone has connected to the chat
 	this.broadcast.to(room.id).emit('user:connected', username);
 
+	// get all messages from the database
+	const messages = await models.Message.find();
+
 	// confirm join
 	callback({
 		success: true,
 		roomName: room.name,
+		messages,
 		users: room.users
 	});
 
