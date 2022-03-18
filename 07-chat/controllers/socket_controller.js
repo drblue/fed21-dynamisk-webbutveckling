@@ -9,28 +9,23 @@ let io = null; // socket.io server instance
 
 // list of rooms and their connected users
 const users = {}
-const rooms = [
-	{
-		id: 'general',
-		name: 'General',
-		users: {},
-	},
-	{
-		id: 'major',
-		name: 'Major',
-		users: {},
-	},
-	{
-		id: 'sergant',
-		name: 'Sergant',
-		users: {},
-	},
-	{
-		id: 'private',
-		name: 'Private',
-		users: {},
-	},
-];
+const rooms = [];
+
+/**
+ * Get rooms from database
+ */
+const getRooms = async () => {
+	const res = await models.Room.find();
+	res.forEach(room => {
+		rooms.push({
+			id: room._id.toString(),
+			name: room.name,
+			users: {},
+		});
+	})
+	console.log(rooms);
+}
+getRooms();
 
 /**
  * Get room by ID
@@ -49,7 +44,7 @@ const getRoomById = id => {
  * @returns
  */
 const getRoomByUserId = id => {
-	return rooms.find(chatroom => chatroom.users.hasOwnProperty(this.id));
+	return rooms.find(chatroom => chatroom.users.hasOwnProperty(id));
 }
 
 const handleDisconnect = function() {
