@@ -42,11 +42,21 @@ const getRoomById = id => {
 	return rooms.find(room => room.id === id)
 }
 
+/**
+ * Get room by User ID
+ *
+ * @param {String} id Socket ID of User to get Room by
+ * @returns
+ */
+const getRoomByUserId = id => {
+	return rooms.find(chatroom => chatroom.users.hasOwnProperty(this.id));
+}
+
 const handleDisconnect = function() {
 	debug(`Client ${this.id} disconnected :(`);
 
 	// find the room that this socket is part of
-	const room = rooms.find(chatroom => chatroom.users.hasOwnProperty(this.id));
+	const room = getRoomByUserId(this.id);
 
 	// if socket was not in a room, don't broadcast disconnect
 	if (!room) {
