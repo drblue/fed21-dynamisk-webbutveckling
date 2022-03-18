@@ -93,6 +93,11 @@ socket.on('chat:message', message => {
 	addMessageToChat(message);
 });
 
+// listen for when a user disconnects
+socket.on('chat:notice', (data) => {
+	addNoticeToChat(data.message);
+});
+
 // get username and room from form and emit `user:joined` and then show chat
 usernameForm.addEventListener('submit', e => {
 	e.preventDefault();
