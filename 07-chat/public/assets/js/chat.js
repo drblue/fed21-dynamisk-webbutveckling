@@ -46,6 +46,23 @@ const addNoticeToChat = notice => {
 	liEl.scrollIntoView();
 }
 
+// get list of rooms from the server
+const getRoomList = () => {
+	console.log("Requesting room list from server...");
+
+	socket.emit('get-room-list', (rooms) => {
+		console.log("Got ourselves a list of rooms from the server!", rooms);
+
+		// render list of rooms in <select> element
+		document.querySelector('#room').innerHTML = rooms
+			.map(room => `<option value="${room.id}">${room.name}</option>`)
+			.join('');
+
+		// allow user to click "Connect!"
+		connectBtn.removeAttribute('disabled');
+	});
+}
+
 // update user list
 const updateUserList = users => {
 	document.querySelector('#online-users').innerHTML =
@@ -161,4 +178,10 @@ messageForm.addEventListener('submit', e => {
 	// clear message input element and focus
 	messageEl.value = '';
 	messageEl.focus();
+});
+
+// attach an event listener for when the document has fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+	// get room list from server
+	getRoomList();
 });

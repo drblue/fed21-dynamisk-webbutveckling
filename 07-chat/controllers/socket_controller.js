@@ -25,6 +25,11 @@ const rooms = [
 		name: 'Sergant',
 		users: {},
 	},
+	{
+		id: 'private',
+		name: 'Private',
+		users: {},
+	},
 ];
 
 /**
@@ -96,6 +101,21 @@ const handleUserJoined = async function(username, room_id, callback) {
 	this.broadcast.to(room.id).emit('user:list', room.users);
 }
 
+const handleGetRoomList = function(callback) {
+	// generate a list of rooms with only their id and name
+	const room_list = rooms.map(room => {
+		return {
+			id: room.id,
+			name: room.name,
+		}
+	});
+
+	// send list of rooms back to the client
+	setTimeout(() => {
+		callback(room_list);
+	}, 1500);
+}
+
 const handleChatMessage = async function(data) {
 	debug('Someone said something: ', data);
 
@@ -118,17 +138,19 @@ const handleChatMessage = async function(data) {
 }
 
 module.exports = function(socket, _io) {
+	// save a reference to the socket.io server instance
 	io = _io;
 
 	debug('a new client has connected', socket.id);
-
-	io.emit("new-connection", "A new user connected");
 
 	// handle user disconnect
 	socket.on('disconnect', handleDisconnect);
 
 	// handle user joined
 	socket.on('user:joined', handleUserJoined);
+
+	// handle get room list request
+	socket.on('get-room-list', handleGetRoomList);
 
 	// handle user emitting a new message
 	socket.on('chat:message', handleChatMessage);
