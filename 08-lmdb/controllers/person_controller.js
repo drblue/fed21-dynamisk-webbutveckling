@@ -22,11 +22,10 @@ const index = async (req, res) => {
 		});
 
 	} catch (error) {
-		res.status(500).send({
+		return res.status(500).send({
 			status: 'error',
 			message: 'Exception thrown when trying to get all people.',
 		});
-		throw error;
 	}
 }
 
@@ -64,11 +63,10 @@ const show = async (req, res) => {
 		});
 
 	} catch (error) {
-		res.status(500).send({
+		return res.status(500).send({
 			status: 'error',
 			message: error.message,
 		});
-		throw error;
 	}
 }
 
@@ -90,11 +88,10 @@ const store = async (req, res) => {
 		});
 
 	} catch (error) {
-		res.status(500).send({
+		return res.status(500).send({
 			status: 'error',
 			message: error.message,
 		});
-		throw error;
 	}
 }
 
@@ -105,7 +102,7 @@ const store = async (req, res) => {
  */
 const update = async (req, res) => {
 	try {
-		const person = await models.Person.findByIdAndUpdate(req.params.personId, req.body, { new: true });
+		const person = await models.Person.findByIdAndUpdate(req.params.personId, req.body);
 
 		if (!person) {
 			res.sendStatus(404);
@@ -120,11 +117,10 @@ const update = async (req, res) => {
 		});
 
 	} catch (error) {
-		res.status(500).send({
+		return res.status(500).send({
 			status: 'error',
 			message: error.message,
 		});
-		throw error;
 	}
 }
 
@@ -150,11 +146,10 @@ const destroy = async (req, res) => {
 		});
 
 	} catch (error) {
-		res.status(500).send({
+		return res.status(500).send({
 			status: 'error',
 			message: error.message,
 		});
-		throw error;
 	}
 }
 

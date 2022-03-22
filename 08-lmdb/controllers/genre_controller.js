@@ -22,11 +22,10 @@ const index = async (req, res) => {
 		});
 
 	} catch (error) {
-		res.status(500).send({
+		return res.status(500).send({
 			status: 'error',
 			message: 'Exception thrown when trying to get all genres.',
 		});
-		throw error;
 	}
 }
 
@@ -52,11 +51,10 @@ const show = async (req, res) => {
 		});
 
 	} catch (error) {
-		res.status(500).send({
+		return res.status(500).send({
 			status: 'error',
 			message: error.message,
 		});
-		throw error;
 	}
 }
 
@@ -78,11 +76,10 @@ const store = async (req, res) => {
 		});
 
 	} catch (error) {
-		res.status(500).send({
+		return res.status(500).send({
 			status: 'error',
 			message: error.message,
 		});
-		throw error;
 	}
 }
 
@@ -93,7 +90,7 @@ const store = async (req, res) => {
  */
 const update = async (req, res) => {
 	try {
-		const genre = await models.Genre.findByIdAndUpdate(req.params.genreId, req.body, { new: true });
+		const genre = await models.Genre.findByIdAndUpdate(req.params.genreId, req.body);
 
 		if (!genre) {
 			res.sendStatus(404);
@@ -108,11 +105,10 @@ const update = async (req, res) => {
 		});
 
 	} catch (error) {
-		res.status(500).send({
+		return res.status(500).send({
 			status: 'error',
 			message: error.message,
 		});
-		throw error;
 	}
 }
 
@@ -138,11 +134,10 @@ const destroy = async (req, res) => {
 		});
 
 	} catch (error) {
-		res.status(500).send({
+		return res.status(500).send({
 			status: 'error',
 			message: error.message,
 		});
-		throw error;
 	}
 }
 
