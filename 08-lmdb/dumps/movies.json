@@ -1,0 +1,33 @@
+[{
+  "_id": {
+    "$oid": "62398fadf69492f81ffbeba0"
+  },
+  "title": "Avengers: Endgame",
+  "plot_keywords": [],
+  "runtime": 182,
+  "release_date": {
+    "$date": "2022-03-22T08:51:31.367Z"
+  },
+  "tagline": null,
+  "genres": [
+    {
+      "$oid": "62398c69e6ebea494c1f90f2"
+    },
+    {
+      "$oid": "62398c83e6ebea494c1f90f8"
+    }
+  ],
+  "actors": [
+    {
+      "$oid": "62398e1ff69492f81ffbeb94"
+    },
+    {
+      "$oid": "62398e68f69492f81ffbeb98"
+    }
+  ],
+  "director": {
+    "$oid": "62398e1ff69492f81ffbeb94"
+  },
+  "slug": "avengers-endgame",
+  "__v": 0
+}]

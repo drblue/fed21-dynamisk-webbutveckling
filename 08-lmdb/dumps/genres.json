@@ -1,0 +1,25 @@
+[{
+  "_id": {
+    "$oid": "62398c69e6ebea494c1f90f2"
+  },
+  "name": "Action",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62398c78e6ebea494c1f90f4"
+  },
+  "name": "Drama",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62398c7de6ebea494c1f90f6"
+  },
+  "name": "Bromance",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62398c83e6ebea494c1f90f8"
+  },
+  "name": "Sci-Fi",
+  "__v": 0
+}]

@@ -1,0 +1,33 @@
+[{
+  "_id": {
+    "$oid": "62398e1ff69492f81ffbeb94"
+  },
+  "name": "Robert Downey Jr.",
+  "gender": "male",
+  "birthdate": {
+    "$date": {
+      "$numberLong": "-149731200000"
+    }
+  },
+  "place_of_birth": {
+    "city": "Manhattan",
+    "country": "US"
+  },
+  "biography": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62398e68f69492f81ffbeb98"
+  },
+  "name": "Scarlett Johansson",
+  "gender": "female",
+  "birthdate": {
+    "$date": "1984-11-22T00:00:00Z"
+  },
+  "place_of_birth": {
+    "city": "Manhattan",
+    "country": "US"
+  },
+  "biography": null,
+  "__v": 0
+}]
